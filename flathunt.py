@@ -20,18 +20,18 @@ __maintainer__ = "Nody"
 __email__ = "harrymcfly@protonmail.com"
 __status__ = "Production"
 
+
+def create_folder(path: str) -> None:
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+
 # init logging
-if os.name == 'posix':
-    # coloring on linux
-    CYELLOW = '\033[93m'
-    CBLUE = '\033[94m'
-    COFF = '\033[0m'
-    LOG_FORMAT = '[' + CBLUE + '%(asctime)s' + COFF + '|' + CBLUE + '%(filename)-18s' + COFF + \
-             '|' + CYELLOW + '%(levelname)-8s' + COFF + ']: %(message)s'
-else:
-    # else without color
-    LOG_FORMAT = '[%(asctime)s|%(filename)-18s|%(levelname)-8s]: %(message)s'
+LOG_FORMAT = '[%(asctime)s|%(filename)-18s|%(levelname)-8s]: %(message)s'
+create_folder("./logs")
 logging.basicConfig(
+    filename=os.path.join("logs", "flathunt.log"),
+    filemode="w",
     format=LOG_FORMAT,
     datefmt='%Y/%m/%d %H:%M:%S',
     level=logging.INFO)
