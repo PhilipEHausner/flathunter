@@ -2,7 +2,7 @@ import pytest
 import json
 import os
 
-from flathunter.crawl_immobilienscout import CrawlImmobilienscout
+from flathunter.crawler.crawl_immobilienscout import CrawlImmobilienscout
 from flathunter.config import Config
 
 DUMMY_CONFIG = """

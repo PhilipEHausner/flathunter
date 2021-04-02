@@ -2,11 +2,10 @@
 import logging
 import re
 import datetime
-import json
 
-from flathunter.abstract_crawler import Crawler
+from flathunter.crawler.abstract_crawler import Crawler
 from selenium.common.exceptions import JavascriptException
-from jsonpath_ng import jsonpath, parse
+from jsonpath_ng import parse
 
 class CrawlImmobilienscout(Crawler):
     """Implementation of Crawler interface for ImmobilienScout"""

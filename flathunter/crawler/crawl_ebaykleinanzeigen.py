@@ -2,7 +2,7 @@
 import logging
 import re
 import datetime
-from flathunter.abstract_crawler import Crawler
+from flathunter.crawler.abstract_crawler import Crawler
 
 class CrawlEbayKleinanzeigen(Crawler):
     """Implementation of Crawler interface for Ebay Kleinanzeigen"""

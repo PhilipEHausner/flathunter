@@ -3,7 +3,7 @@ import logging
 import re
 import datetime
 
-from flathunter.abstract_crawler import Crawler
+from flathunter.crawler.abstract_crawler import Crawler
 
 class CrawlImmowelt(Crawler):
     """Implementation of Crawler interface for ImmoWelt"""

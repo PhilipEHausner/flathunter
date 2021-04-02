@@ -1,6 +1,6 @@
 import pytest
 
-from flathunter.crawl_immowelt import CrawlImmowelt
+from flathunter.crawler.crawl_immowelt import CrawlImmowelt
 from test_util import count
 from flathunter.config import Config
 

@@ -2,10 +2,8 @@
 import logging
 import re
 
-import requests
-from bs4 import BeautifulSoup
-from flathunter.abstract_crawler import Crawler
-from random_user_agent.user_agent import UserAgent
+from flathunter.crawler.abstract_crawler import Crawler
+
 
 class CrawlIdealista(Crawler):
     """Implementation of Crawler interface for Idealista"""

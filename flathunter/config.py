@@ -3,13 +3,13 @@ import os
 import logging
 import yaml
 
-from flathunter.crawl_ebaykleinanzeigen import CrawlEbayKleinanzeigen
-from flathunter.crawl_immobilienscout import CrawlImmobilienscout
-from flathunter.crawl_wggesucht import CrawlWgGesucht
-from flathunter.crawl_immowelt import CrawlImmowelt
-from flathunter.crawler_subito import CrawlSubito
-from flathunter.crawl_immobiliare import CrawlImmobiliare
-from flathunter.crawl_idealista import CrawlIdealista
+from flathunter.crawler.crawl_ebaykleinanzeigen import CrawlEbayKleinanzeigen
+from flathunter.crawler.crawl_immobilienscout import CrawlImmobilienscout
+from flathunter.crawler.crawl_wggesucht import CrawlWgGesucht
+from flathunter.crawler.crawl_immowelt import CrawlImmowelt
+from flathunter.crawler.crawler_subito import CrawlSubito
+from flathunter.crawler.crawl_immobiliare import CrawlImmobiliare
+from flathunter.crawler.crawl_idealista import CrawlIdealista
 from flathunter.filter import Filter
 
 class Config:

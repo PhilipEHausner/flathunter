@@ -1,6 +1,6 @@
 import unittest
 from functools import reduce
-from flathunter.crawl_wggesucht import CrawlWgGesucht
+from flathunter.crawler.crawl_wggesucht import CrawlWgGesucht
 from flathunter.config import Config
 
 class WgGesuchtCrawlerTest(unittest.TestCase):

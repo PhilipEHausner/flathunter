@@ -1,11 +1,10 @@
 import logging
 import re
 from random import seed
-from random import random
 from random import randint
 from random import choice
 
-from flathunter.abstract_crawler import Crawler
+from flathunter.crawler.abstract_crawler import Crawler
 
 class DummyCrawler(Crawler):
     __log__ = logging.getLogger('flathunt')
