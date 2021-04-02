@@ -4,7 +4,7 @@
 [![travis build status](https://travis-ci.org/flathunters/flathunter.svg?branch=main)](https://travis-ci.org/github/flathunters/flathunter)
 [![codecov](https://codecov.io/gh/flathunters/flathunter/branch/master/graph/badge.svg)](https://codecov.io/gh/flathunters/flathunter)
 
-A Telegram bot to help people with their flat search
+A Telegram bot to help people with their flat search. Now without using Telegram!
 
 ## Description
 

@@ -53,8 +53,8 @@ def launch_flat_hunt(config):
 def main():
     """Processes command-line arguments, loads the config, launches the flathunter"""
     parser = argparse.ArgumentParser(description=\
-             "Searches for flats on Immobilienscout24.de and wg-gesucht.de and sends " + \
-             "results to Telegram User", epilog="Designed by Nody")
+             "Searches for flats on Immobilienscout24.de and wg-gesucht.de",
+                                     epilog="Designed by Nody")
     parser.add_argument('--config', '-c',
                         type=argparse.FileType('r', encoding='UTF-8'),
                         default='%s/config.yaml' % os.path.dirname(os.path.abspath(__file__)),
@@ -68,11 +68,6 @@ def main():
     config = Config(config_handle.name)
 
     # check config
-    if not config.get('telegram', dict()).get('bot_token'):
-        __log__.error("No telegram bot token configured. Starting like this would be pointless...")
-        return
-    if not config.get('telegram', dict()).get('receiver_ids'):
-        __log__.warning("No telegram receivers configured - nobody will get notifications.")
     if not config.get('urls'):
         __log__.error("No urls configured. Starting like this would be meaningless...")
         return
@@ -84,6 +79,7 @@ def main():
 
     # start hunting for flats
     launch_flat_hunt(config)
+
 
 if __name__ == "__main__":
     main()
