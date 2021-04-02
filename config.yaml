@@ -1,0 +1,15 @@
+verbose: true
+
+loop:
+  active: yes
+  sleeping_time: 5
+
+database_location: database
+
+urls:
+  - https://www.wg-gesucht.de/wohnungen-und-haeuser-in-Heidelberg.59.2+3.1.0.html?offer_filter=1&city_id=59&noDeact=1&categories%5B%5D=2&categories%5B%5D=3&rent_types%5B%5D=2#back_to_ad_8584624
+
+filters:
+  excluded_titles:
+    - "wg"
+    - "zwischenmiete"
