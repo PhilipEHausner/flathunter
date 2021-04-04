@@ -1,10 +1,31 @@
 """Expose crawler for WgGesucht"""
+import datetime
 import logging
 import re
 import requests
 from bs4 import BeautifulSoup
 
 from flathunter.crawler.abstract_crawler import Crawler
+
+
+def formatted_date(date: datetime.datetime) -> str:
+    return f"{date.day}.{date.month}.{date.year}"
+
+
+def submission_date(submission: str, today: datetime.datetime) -> str:
+    online_since = ""
+    try:
+        if "stunde" in submission:
+            delta = int(re.findall("([0-9]*?) stunde", submission)[0])
+            online_since = formatted_date(today - datetime.timedelta(hours=delta))
+        elif "tag" in submission:
+            delta = int(re.findall(r"([0-9]*?) tag", submission)[0])
+            online_since = formatted_date(today - datetime.timedelta(days=delta))
+        else:  # Representation as xx.xx.xxxx
+            online_since = re.findall(r"[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}", submission)[0]
+    except:
+        pass
+    return online_since
 
 
 class CrawlWgGesucht(Crawler):
@@ -25,6 +46,7 @@ class CrawlWgGesucht(Crawler):
         findings = soup.find_all(lambda e: e.has_attr('id') and e['id'].startswith('liste-'))
         existing_findings = list(
             [e for e in findings if e.has_attr('class') and not 'display-none' in e['class']])
+        today = datetime.datetime.today()
 
         base_url = 'https://www.wg-gesucht.de/'
         for row in existing_findings:
@@ -37,6 +59,9 @@ class CrawlWgGesucht(Crawler):
             details_array = list(map(lambda s: re.sub(' +', ' ',
                                                       re.sub(r'\W', ' ', s.strip())),
                                      detail_string))
+            online_since = (row.find_all("div",
+                                         {"class": "col-sm-12 flex_space_between"})[2].find_all("span")[1]).text.lower()
+            online_since = submission_date(online_since, today)
             numbers_row = row.find("div", {"class": "middle"})
             price = numbers_row.find("div", {"class": "col-xs-3"}).text.strip()
             rooms_tmp = re.findall(r'\d Zimmer', details_array[0])
@@ -61,7 +86,8 @@ class CrawlWgGesucht(Crawler):
                 'size': size[0],
                 'rooms': rooms,
                 'address': url,
-                'crawler': self.get_name()
+                'crawler': self.get_name(),
+                'online_since': online_since
             }
             if len(dates) == 2:
                 details['from'] = dates[0]
